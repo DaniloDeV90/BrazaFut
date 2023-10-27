@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace Jogobrazino.src.interfaces
 {
-    public  interface Ijogador
+    public interface Ienergia
     {
-        public string _jogador1();
+        public string _jogador();
 
-        public string _jogador2();
+
+
+        public int _energia();
+     
     }
 }

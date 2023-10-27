@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
-namespace Jogobrazino.src.Controllers.Lendas
+using Jogobrazino.src.interfaces;
+
+namespace Jogobrazino.src.Controllers.LendasController
 {
-    internal class Lendas
+    public class Lendas : Ilendas
 
     {
 
@@ -34,12 +31,12 @@ namespace Jogobrazino.src.Controllers.Lendas
 
             lendas.Add(legend);
         }
-        public int ReturnLegend()
+        public string ReturnLegend()
         {
 
             Random random = new Random();
 
-            return random.Next(lendas.Count);
+            return lendas[random.Next (lendas.Count)];
 
 
         }

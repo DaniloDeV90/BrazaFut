@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace Jogobrazino.src.interfaces
 {
-    public  interface Ijogador
+    public interface Isorteio
     {
-        public string _jogador1();
-
-        public string _jogador2();
+        public String CaraOuCoroa();
     }
 }
