@@ -4,15 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jogobrazino.src.interfaces
+namespace Jogobrazino.src.Controllers.Energia
 {
     public interface Ienergia
     {
-        public string _jogador();
 
 
+        public void addEnergia();
 
-        public int _energia();
-     
+        public void removeEnergia();
+
+        public int getEnergia();
+      
     }
 }

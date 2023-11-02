@@ -1,40 +1,69 @@
 ﻿
+using Jogobrazino.src.Controllers.Carta;
+using Jogobrazino.src.Controllers.Energia;
+using System.Text;
 
-using Jogobrazino.src.Controllers.LendasController;
-using Jogobrazino.src.interfaces;
-
-namespace Jogobrazino.src.Controllers.JogadorController
+namespace Jogobrazino.src.Controllers.Jogador
 {
-    public class Jogador : Ijogador
+    public class Jogadores : Ijogador
     {
-        private string jogador1 { get; }
-        private string jogador2 { get;  }
+        private string nome1;
+        private Ienergia energia1;
+        private List<ICarta> cartasGeradas;
 
 
-        private Ilendas lendas { get; set; }
-       
- 
-        public Jogador(string jogador1, string jogador2, Ilendas lendas)
+
+        public Jogadores(string nome, Ienergia energia1)
         {
-            this.jogador1 = jogador1;
-            this.lendas = lendas;
-            if (string.IsNullOrEmpty(jogador2)) this.jogador2 = lendas.ReturnLegend ();
-             else  this.jogador2 = jogador2;
+            this.nome1 = nome.Length > 0 ? nome : "maquina";
+            this.energia1 = energia1;
+
         }
 
 
-        public  string _jogador1 ()
+        public string Getnome1()
         {
-            return jogador1;
+
+            return nome1;
+
         }
 
-        public string _jogador2 ()
+
+        public Ienergia GetEnergia1()
         {
-            return jogador2;
+            return energia1;
+        }
+
+
+        public void SetCarta(List<ICarta> cartas)
+        {
+            this.cartasGeradas = cartas;
+        }
+
+        public List<ICarta> getCarta( )
+        {
+            return cartasGeradas;
         }
         public override string ToString()
         {
-            return jogador1 + " X " + jogador2;
+
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append(nome1);
+            sb.Append("\n");
+
+
+
+            return sb.ToString();
+        }
+
+        public override bool Equals(object? obj)
+        {
+            Jogadores  objJogadores = (Jogadores)obj;
+
+            if (objJogadores == null) return false;
+            return   nome1 == objJogadores.Getnome1 ();
         }
     }
+
 }
