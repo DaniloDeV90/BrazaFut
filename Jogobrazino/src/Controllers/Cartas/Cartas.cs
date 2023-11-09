@@ -15,7 +15,7 @@ namespace Jogobrazino.src.Controllers.Cartas
 
         public Cartas()
         {
-            cartas.Add(new Carta.Carta("Gol", 3));
+            cartas.Add(new Carta.Carta("GOL", 3));
             cartas.Add(new Carta.Carta("Pênalti", 2));
             cartas.Add(new Carta.Carta("Falta", 1));
             cartas.Add(new Carta.Carta("Cartão Amarelo", 1));
@@ -33,7 +33,7 @@ namespace Jogobrazino.src.Controllers.Cartas
             for (int i = 0; i < 3; i++)
             {
             
-                if (random.Next(100) < 60 && cartasGeradas.Count > 0)
+                if (random.Next(100) < 99 && cartasGeradas.Count > 0)
                 {
                     int indiceExistente = random.Next(cartasGeradas.Count);
                     cartasGeradas.Add(cartasGeradas[indiceExistente]);

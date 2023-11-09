@@ -1,6 +1,8 @@
 ﻿
 using Jogobrazino.src.Controllers.Carta;
 using Jogobrazino.src.Controllers.Energia;
+using Jogobrazino.src.Controllers.Gols;
+using Jogobrazino.src.Controllers.Pontos;
 using System.Text;
 
 namespace Jogobrazino.src.Controllers.Jogador
@@ -10,18 +12,18 @@ namespace Jogobrazino.src.Controllers.Jogador
         private string nome1;
         private Ienergia energia1;
         private List<ICarta> cartasGeradas;
+        private Ipontos pontos;
+        private Igol gol;
 
-
-
-        public Jogadores(string nome, Ienergia energia1)
+        public Jogadores(string nome, Ienergia energia1, Ipontos pontos, Igol gol)
         {
             this.nome1 = nome.Length > 0 ? nome : "maquina";
             this.energia1 = energia1;
-
+            this.pontos = pontos;
+            this.gol = gol;
         }
 
-
-        public string Getnome1()
+        public string Getnome()
         {
 
             return nome1;
@@ -29,7 +31,7 @@ namespace Jogobrazino.src.Controllers.Jogador
         }
 
 
-        public Ienergia GetEnergia1()
+        public Ienergia Energia()
         {
             return energia1;
         }
@@ -40,10 +42,25 @@ namespace Jogobrazino.src.Controllers.Jogador
             this.cartasGeradas = cartas;
         }
 
-        public List<ICarta> getCarta( )
+        public List<ICarta> getCarta()
         {
             return cartasGeradas;
         }
+        public Ipontos Pontos ()
+        {
+            return pontos;
+        }
+
+
+        public Igol Gol ()
+        {
+            return gol;
+        }
+       
+
+
+
+
         public override string ToString()
         {
 
@@ -62,7 +79,7 @@ namespace Jogobrazino.src.Controllers.Jogador
             Jogadores  objJogadores = (Jogadores)obj;
 
             if (objJogadores == null) return false;
-            return   nome1 == objJogadores.Getnome1 ();
+            return   nome1 == objJogadores.Getnome ();
         }
     }
 

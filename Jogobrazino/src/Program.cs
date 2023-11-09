@@ -1,7 +1,11 @@
 ﻿
+using Jogobrazino.src.Controllers.Acoes;
 using Jogobrazino.src.Controllers.Cartas;
 using Jogobrazino.src.Controllers.Energia;
+using Jogobrazino.src.Controllers.GerarPlacar;
+using Jogobrazino.src.Controllers.Gols;
 using Jogobrazino.src.Controllers.Jogador;
+using Jogobrazino.src.Controllers.Pontos;
 using Jogobrazino.src.Controllers.Sorteio;
 using System;
 using System.Text;
@@ -27,7 +31,7 @@ namespace Jogobrazino.src
                 if (controller == 1 && nome.Length == 0) { Console.WriteLine("O primeiro jogaodr não pode ser nulo!"); return; }
 
 
-                jogadores.Add(new Jogadores(nome, new Energia()));
+                jogadores.Add(new Jogadores(nome, new Energia(),  new Ponto ( ), new Gol () ));
 
             } while (controller != 2);
 
@@ -42,7 +46,7 @@ namespace Jogobrazino.src
                 sorteio.JogadorNaosorteado()
             };
             
-            Console.WriteLine("Jogador sorteado a começar é: " + JogadoresSorteados[controller].Getnome1());
+            Console.WriteLine("Jogador sorteado a começar é: " + JogadoresSorteados[controller].Getnome());
 
 
             string finalizar = "";
@@ -52,17 +56,45 @@ namespace Jogobrazino.src
                 do
                 {
 
-                    Console.WriteLine("Jogador " + JogadoresSorteados[controller].Getnome1() + ", Aperte qualquer tecla para gerar as suas 3 cartas");
-                    Console.ReadLine();
+                    if (JogadoresSorteados[controller].Energia().getEnergia() > 0)
+                    {
+                        Console.WriteLine("Jogador " + JogadoresSorteados[controller].Getnome() + ", Aperte qualquer tecla para gerar as suas 3 cartas");
+                        Console.ReadLine();
 
-                    Cartas cartas = new Cartas();
+                        Cartas cartas = new Cartas();
 
-                    JogadoresSorteados[controller].SetCarta(cartas.GerarCartas());
-                    JogadoresSorteados[controller].getCarta().ForEach(cartas => Console.WriteLine(cartas.getNome()));
-                    Console.ReadLine();
+                        Console.Clear();
+                        Console.WriteLine("-------------" + "\n" +
+                        "Cartas geradas ");
 
-                   
-                    Console.Clear();
+
+                        JogadoresSorteados[controller].SetCarta(cartas.GerarCartas());
+                        JogadoresSorteados[controller].getCarta().ForEach(cartas => Console.WriteLine(cartas.getNome()));
+                        Console.ReadLine();
+
+                        AcoesDoJogo acoesDoJogo = new AcoesDoJogo();
+
+                        Console.WriteLine((acoesDoJogo.CartasIguais(JogadoresSorteados[controller].getCarta())));
+                        if (acoesDoJogo.CartasIguais(JogadoresSorteados[controller].getCarta()))
+                        {
+                            acoesDoJogo.GerarAcao(JogadoresSorteados[controller]);
+
+                        }
+
+                        Console.ReadLine();
+
+
+                        Console.Clear();
+
+
+                        new GerarPlacar().Placar(JogadoresSorteados);
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Sem energia! passou a vez");
+                    }
+               
                     controller++;
                 } while (controller != 2);
 
