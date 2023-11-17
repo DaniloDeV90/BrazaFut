@@ -12,7 +12,7 @@ namespace Jogobrazino.src.Controllers.Energia
 
         public void addEnergia();
 
-        public void removeEnergia();
+        public void removeEnergia(int valor);
 
         public int getEnergia();
       

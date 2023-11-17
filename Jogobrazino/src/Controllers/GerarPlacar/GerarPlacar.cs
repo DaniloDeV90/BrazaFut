@@ -7,7 +7,7 @@ namespace Jogobrazino.src.Controllers.GerarPlacar
 {
     public class GerarPlacar
     {
-        public void Placar(List<Jogadores> Jogadores)
+        public void Placar(List<Ijogador> Jogadores)
         {
             StringBuilder stringBuilder = new StringBuilder();
 
@@ -19,6 +19,26 @@ namespace Jogobrazino.src.Controllers.GerarPlacar
             stringBuilder.Append(" X ");
             stringBuilder.Append(Jogadores[1].Gol().getGol() + " ");
             stringBuilder.Append(Jogadores[1].Getnome());
+            stringBuilder.Append("\n");
+            stringBuilder.Append("\n");
+
+            stringBuilder.Append("--------------ENERGIAS---------------");
+            stringBuilder.Append("\n");
+            stringBuilder.Append(Jogadores[0].Getnome() + ": ");
+            stringBuilder.Append(Jogadores[0].Energia ().getEnergia  ());
+            stringBuilder.Append("\n");
+            stringBuilder.Append(Jogadores[1].Getnome() + ": ");
+            stringBuilder.Append(Jogadores[1].Energia ().getEnergia ());
+            stringBuilder.Append("\n");
+            stringBuilder.Append("\n");
+            
+            stringBuilder.Append("--------------PONTOS---------------");
+            stringBuilder.Append("\n");
+            stringBuilder.Append(Jogadores[0].Getnome() + ": ");
+            stringBuilder.Append(Jogadores[0].Pontos ().getPontos ());
+            stringBuilder.Append("\n");
+            stringBuilder.Append(Jogadores[1].Getnome() + ": ");
+            stringBuilder.Append(Jogadores[1].Pontos().getPontos());
             stringBuilder.Append("\n");
             stringBuilder.Append("-----------------------------");
 

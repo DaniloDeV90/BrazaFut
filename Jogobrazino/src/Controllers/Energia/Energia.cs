@@ -16,10 +16,10 @@ namespace Jogobrazino.src.Controllers.Energia
         {
             energia++;
         }
-        public void removeEnergia()
+        public void removeEnergia(int valor)
         {
 
-            if (energia != 0) energia--;
+            energia -= valor;
         }
 
 

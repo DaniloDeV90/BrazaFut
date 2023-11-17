@@ -6,19 +6,23 @@ using System.Threading.Tasks;
 
 namespace Jogobrazino.src.Controllers.Pontos
 {
-    public class Ponto: Ipontos
+    public class Ponto : Ipontos
     {
         private int Pontos = 0;
 
         public void addPontos(int Pontos)
         {
-           this.Pontos++;
+            this.Pontos += Pontos;
         }
 
-        public int getPontos ()
+        public int getPontos()
         {
             return this.Pontos;
         }
 
+        public void  removePontos(int Pontos)
+        {
+            this.Pontos  -= Pontos;
+        }
     }
 }

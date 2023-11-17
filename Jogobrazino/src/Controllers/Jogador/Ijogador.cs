@@ -1,4 +1,5 @@
 ﻿using Jogobrazino.src.Controllers.Carta;
+using Jogobrazino.src.Controllers.CartaoAmarelo;
 using Jogobrazino.src.Controllers.Energia;
 using Jogobrazino.src.Controllers.Gols;
 using Jogobrazino.src.Controllers.Pontos;
@@ -25,7 +26,8 @@ namespace Jogobrazino.src.Controllers.Jogador
 
         public Ipontos Pontos();
 
-
+    
+        public IcartaoAmarelo CartaoAmarelo();
         public Igol Gol();
     
     }

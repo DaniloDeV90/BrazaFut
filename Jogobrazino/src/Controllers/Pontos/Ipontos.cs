@@ -12,6 +12,6 @@ namespace Jogobrazino.src.Controllers.Pontos
       
 
         public int getPontos();
-  
+        public void removePontos(int Pontos);
     }
 }

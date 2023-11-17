@@ -1,12 +1,15 @@
 ﻿
 using Jogobrazino.src.Controllers.Acoes;
+using Jogobrazino.src.Controllers.CartaoAmarelo;
 using Jogobrazino.src.Controllers.Cartas;
 using Jogobrazino.src.Controllers.Energia;
 using Jogobrazino.src.Controllers.GerarPlacar;
+using Jogobrazino.src.Controllers.GerarPontos;
 using Jogobrazino.src.Controllers.Gols;
 using Jogobrazino.src.Controllers.Jogador;
 using Jogobrazino.src.Controllers.Pontos;
 using Jogobrazino.src.Controllers.Sorteio;
+using Jogobrazino.src.Controllers.Vencedor;
 using System;
 using System.Text;
 
@@ -31,27 +34,29 @@ namespace Jogobrazino.src
                 if (controller == 1 && nome.Length == 0) { Console.WriteLine("O primeiro jogaodr não pode ser nulo!"); return; }
 
 
-                jogadores.Add(new Jogadores(nome, new Energia(),  new Ponto ( ), new Gol () ));
+                jogadores.Add(new Jogadores(nome, new Energia(), new Ponto(), new Gol() , new CartaoAmarelo ()));
 
             } while (controller != 2);
 
-            controller = 0;
+
 
             Sorteio sorteio = new Sorteio(jogadores);
 
 
-            List<Jogadores> JogadoresSorteados = new List<Jogadores>
+            List<Ijogador> JogadoresSorteados = new List<Ijogador>
             {
                 sorteio.JogadorSorteado(),
                 sorteio.JogadorNaosorteado()
             };
             
-            Console.WriteLine("Jogador sorteado a começar é: " + JogadoresSorteados[controller].Getnome());
+            Console.WriteLine("Jogador sorteado a começar é: " + JogadoresSorteados[0].Getnome());
 
 
-            string finalizar = "";
+            int resultado = 1;
+
             do
             {
+                controller = 0;
 
                 do
                 {
@@ -80,6 +85,10 @@ namespace Jogobrazino.src
                             acoesDoJogo.GerarAcao(JogadoresSorteados[controller]);
 
                         }
+                        else
+                        {
+                            new GerarPontos().PontosDeCarta(JogadoresSorteados[controller]);
+                        }
 
                         Console.ReadLine();
 
@@ -92,19 +101,19 @@ namespace Jogobrazino.src
                     }
                     else
                     {
-                        Console.WriteLine("Sem energia! passou a vez");
+                        Console.WriteLine(JogadoresSorteados[controller] + " Ficou  Sem energia e  passou a vez!");
+                        Console.ReadLine();
                     }
-               
+
+
+
+
+
                     controller++;
                 } while (controller != 2);
 
-
-
-                Console.WriteLine("Para finalizar aperte 1 ou qualquer outra tecla para continuar");
-                controller = 0;
-                finalizar = Console.ReadLine();
-            } while (finalizar.Equals ("") );
-
+                resultado = new ResultadoFinal().GerarResultadoFinal(JogadoresSorteados);
+            } while (resultado != 0);
             Console.ReadLine();
 
         }
