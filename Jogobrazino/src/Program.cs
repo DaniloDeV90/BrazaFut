@@ -26,10 +26,10 @@ namespace Jogobrazino.src
             {
                 reiniciar = 0;
 
-                Console.Clear ()
+                Console.Clear();
 
 
-                List<Jogadores> jogadores = new List<Jogadores>();
+                List <Jogadores> jogadores = new List<Jogadores>();
 
 
                 int controller = 0;
