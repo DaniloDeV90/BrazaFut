@@ -61,7 +61,7 @@ namespace Jogobrazino.src.Controllers.Acoes
 
                     Console.ResetColor();
                     Console.WriteLine(" O jogador " + jogador.Getnome() + " irá cobrar um penâlti");
-
+                    
                     Console.ReadLine();
                     Console.WriteLine("Digite o lado em que você irá chutar a bola, opcoes: ESQUERDA, DIREITA, CENTRO");
 

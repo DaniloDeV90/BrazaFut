@@ -16,9 +16,10 @@ namespace Jogobrazino.src.Controllers.Jogador
         private Ipontos pontos;
         private Igol gol;
         private IcartaoAmarelo cartaoAmarelo;
+    
         public Jogadores(string nome, Ienergia energia1, Ipontos pontos, Igol gol, IcartaoAmarelo cartaoAmarelo)
         {
-            this.nome1 = nome.Length > 0 ? nome : "maquina";
+            this.nome1 = nome.Trim ().Length > 0 ? nome : "maquina";
             this.energia1 = energia1;
             this.pontos = pontos;
             this.gol = gol;
@@ -64,6 +65,7 @@ namespace Jogobrazino.src.Controllers.Jogador
         {
             return cartaoAmarelo;
         }
+
 
 
         public override string ToString()

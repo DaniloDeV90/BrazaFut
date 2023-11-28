@@ -20,103 +20,119 @@ namespace Jogobrazino.src
 
         public static void Main(string[] args)
         {
+            int reiniciar = 0;
 
-            List<Jogadores> jogadores = new List<Jogadores>();
-
-
-            int controller = 0;
             do
             {
-                controller++;
-                Console.WriteLine("Digite o nome do jogador " + controller);
-                string? nome = Console.ReadLine();
+                reiniciar = 0;
 
-                if (controller == 1 && nome.Length == 0) { Console.WriteLine("O primeiro jogaodr não pode ser nulo!"); return; }
+                Console.Clear ()
 
 
-                jogadores.Add(new Jogadores(nome, new Energia(), new Ponto(), new Gol() , new CartaoAmarelo ()));
-
-            } while (controller != 2);
+                List<Jogadores> jogadores = new List<Jogadores>();
 
 
+                int controller = 0;
+                do
+                {
+                    controller++;
+                    Console.WriteLine("Digite o nome do jogador " + controller);
+                    string? nome = Console.ReadLine();
 
-            Sorteio sorteio = new Sorteio(jogadores);
+                    if (controller == 1 && nome.Length == 0) { Console.WriteLine("O primeiro jogaodr não pode ser nulo!"); return; }
 
 
-            List<Ijogador> JogadoresSorteados = new List<Ijogador>
+                    jogadores.Add(new Jogadores(nome, new Energia(), new Ponto(), new Gol(), new CartaoAmarelo()));
+
+                } while (controller != 2);
+
+
+
+                Sorteio sorteio = new Sorteio(jogadores);
+
+
+                List<Ijogador> JogadoresSorteados = new List<Ijogador>
             {
                 sorteio.JogadorSorteado(),
                 sorteio.JogadorNaosorteado()
             };
-            
-            Console.WriteLine("Jogador sorteado a começar é: " + JogadoresSorteados[0].Getnome());
+
+                Console.WriteLine("Jogador sorteado a começar é: " + JogadoresSorteados[0].Getnome());
 
 
-            int resultado = 1;
 
-            do
-            {
-                controller = 0;
-
+                int resultado = 1;
+      
                 do
                 {
+                    controller = 0;
 
-                    if (JogadoresSorteados[controller].Energia().getEnergia() > 0)
+                    do
                     {
-                        Console.WriteLine("Jogador " + JogadoresSorteados[controller].Getnome() + ", Aperte qualquer tecla para gerar as suas 3 cartas");
-                        Console.ReadLine();
 
-                        Cartas cartas = new Cartas();
+                 
 
-                        Console.Clear();
-                        Console.WriteLine("-------------" + "\n" +
-                        "Cartas geradas ");
-
-
-                        JogadoresSorteados[controller].SetCarta(cartas.GerarCartas());
-                        JogadoresSorteados[controller].getCarta().ForEach(cartas => Console.WriteLine(cartas.getNome()));
-                        Console.ReadLine();
-
-                        AcoesDoJogo acoesDoJogo = new AcoesDoJogo();
-
-                        Console.WriteLine((acoesDoJogo.CartasIguais(JogadoresSorteados[controller].getCarta())));
-                        if (acoesDoJogo.CartasIguais(JogadoresSorteados[controller].getCarta()))
+                        if (JogadoresSorteados[controller].Energia().getEnergia() > 0)
                         {
-                            acoesDoJogo.GerarAcao(JogadoresSorteados[controller]);
+                            Console.WriteLine("Jogador " + JogadoresSorteados[controller].Getnome() + ", Aperte qualquer tecla para gerar as suas 3 cartas");
+                            Console.ReadLine();
+
+                            Cartas cartas = new Cartas();
+
+                            Console.Clear();
+                            Console.WriteLine("-------------" + "\n" +
+                            "Cartas geradas ");
+
+
+                            JogadoresSorteados[controller].SetCarta(cartas.GerarCartas());
+                            JogadoresSorteados[controller].getCarta().ForEach(cartas => Console.WriteLine(cartas.getNome()));
+                            Console.ReadLine();
+
+                            AcoesDoJogo acoesDoJogo = new AcoesDoJogo();
+
+                            Console.WriteLine((acoesDoJogo.CartasIguais(JogadoresSorteados[controller].getCarta())));
+                            if (acoesDoJogo.CartasIguais(JogadoresSorteados[controller].getCarta()))
+                            {
+                                acoesDoJogo.GerarAcao(JogadoresSorteados[controller]);
+
+                            }
+                            else
+                            {
+                                new GerarPontos().PontosDeCarta(JogadoresSorteados[controller]);
+                            }
+
+                            Console.ReadLine();
+
+
+                            Console.Clear();
+
+
+                            new GerarPlacar().Placar(JogadoresSorteados);
 
                         }
                         else
                         {
-                            new GerarPontos().PontosDeCarta(JogadoresSorteados[controller]);
+                            Console.WriteLine(JogadoresSorteados[controller] + " Ficou  Sem energia e  passou a vez!");
+                            Console.ReadLine();
                         }
 
-                        Console.ReadLine();
-
-
-                        Console.Clear();
-
-
-                        new GerarPlacar().Placar(JogadoresSorteados);
-
-                    }
-                    else
-                    {
-                        Console.WriteLine(JogadoresSorteados[controller] + " Ficou  Sem energia e  passou a vez!");
-                        Console.ReadLine();
-                    }
 
 
 
 
+                        controller++;
+                    } while (controller != 2);
 
-                    controller++;
-                } while (controller != 2);
+                    resultado = new ResultadoFinal().GerarResultadoFinal(JogadoresSorteados);
+                } while (resultado != 0);
+                Console.ReadLine();
 
-                resultado = new ResultadoFinal().GerarResultadoFinal(JogadoresSorteados);
-            } while (resultado != 0);
-            Console.ReadLine();
 
-        }
+                Console.WriteLine("Digite 1 para fechar o programa ou  0 para reiniciar");
+                reiniciar = int.Parse(Console.ReadLine());
+
+            } while (reiniciar != 1);
+            }
 
     }
-}
+    }
