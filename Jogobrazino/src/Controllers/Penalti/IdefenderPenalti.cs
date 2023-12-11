@@ -7,9 +7,12 @@ using System.Threading.Tasks;
 
 namespace Jogobrazino.src.Controllers.Penalti
 {
-    public interface Ipenalti
+    public interface IdefenderPenalti
     {
-        public void CobrarPenalti(Ijogador cobrador);
+        public void defender(int controller, List<Ijogador> JogadoresSorteados);
+
+
 
     }
-    }
+}
+

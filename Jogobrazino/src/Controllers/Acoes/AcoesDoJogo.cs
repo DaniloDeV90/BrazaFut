@@ -29,7 +29,7 @@ namespace Jogobrazino.src.Controllers.Acoes
             return true;
         }
 
-        public void GerarAcao (Ijogador jogador)
+        public void GerarAcao (Ijogador jogador, Ijogador jogado2)
         {
 
             switch (jogador.getCarta()[0].getNome())
@@ -65,18 +65,8 @@ namespace Jogobrazino.src.Controllers.Acoes
                     Console.ReadLine();
                     Console.WriteLine("Digite o lado em que você irá chutar a bola, opcoes: ESQUERDA, DIREITA, CENTRO");
 
-                    bool resultadoPenalti = penalti.CobrarPenalti();
+                   penalti.CobrarPenalti(jogado2);
 
-                    if (resultadoPenalti)
-                    {
-                        Console.WriteLine("PEEEEEEENALTI CONVERTIDOOOO");
-
-                        jogador.Gol().addGol();
-                    }
-                    else
-                    {
-                        Console.WriteLine("DEFENDEUUU.");
-                    }
 
                     Console.WriteLine("---------------------");
                     break;

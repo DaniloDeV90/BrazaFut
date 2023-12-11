@@ -7,6 +7,8 @@ using Jogobrazino.src.Controllers.GerarPlacar;
 using Jogobrazino.src.Controllers.GerarPontos;
 using Jogobrazino.src.Controllers.Gols;
 using Jogobrazino.src.Controllers.Jogador;
+using Jogobrazino.src.Controllers.LadoCobrado;
+using Jogobrazino.src.Controllers.Penalti;
 using Jogobrazino.src.Controllers.Pontos;
 using Jogobrazino.src.Controllers.Sorteio;
 using Jogobrazino.src.Controllers.Vencedor;
@@ -42,7 +44,7 @@ namespace Jogobrazino.src
                     if (controller == 1 && nome.Length == 0) { Console.WriteLine("O primeiro jogaodr não pode ser nulo!"); return; }
 
 
-                    jogadores.Add(new Jogadores(nome, new Energia(), new Ponto(), new Gol(), new CartaoAmarelo()));
+                    jogadores.Add(new Jogadores(nome, new Energia(), new Ponto(), new Gol(), new CartaoAmarelo() , new ladoCobrado () ));
 
                 } while (controller != 2);
 
@@ -74,6 +76,14 @@ namespace Jogobrazino.src
 
                         if (JogadoresSorteados[controller].Energia().getEnergia() > 0)
                         {
+
+                            if (JogadoresSorteados[controller].ladocobrado().getLado().Length > 0)
+                            {
+                              new DefenderPenalti().defender(controller, JogadoresSorteados);
+                                controller++;
+                                continue;
+                            }
+
                             Console.WriteLine("Jogador " + JogadoresSorteados[controller].Getnome() + ", Aperte qualquer tecla para gerar as suas 3 cartas");
                             Console.ReadLine();
 
@@ -93,7 +103,8 @@ namespace Jogobrazino.src
                             Console.WriteLine((acoesDoJogo.CartasIguais(JogadoresSorteados[controller].getCarta())));
                             if (acoesDoJogo.CartasIguais(JogadoresSorteados[controller].getCarta()))
                             {
-                                acoesDoJogo.GerarAcao(JogadoresSorteados[controller]);
+                                int  jogadorNaosorteado = controller == 0 ?  1:  0;
+                                acoesDoJogo.GerarAcao(JogadoresSorteados[controller],  JogadoresSorteados[ jogadorNaosorteado]);
 
                             }
                             else

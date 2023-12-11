@@ -1,42 +1,42 @@
-﻿using System;
+﻿using Jogobrazino.src.Controllers.Jogador;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+
+
 
 namespace Jogobrazino.src.Controllers.Penalti
 {
     public class Penalti : Ipenalti
     {
 
-        public bool CobrarPenalti()
+        public void CobrarPenalti(Ijogador cobrador)
         {
-
+            string[] lados = { "ESQUERDA", "DIREITA", "CENTRO" };
             try
             {
 
 
-                string[] lados = { "ESQUERDA", "DIREITA", "CENTRO" };
-
+       
 
                 Random random = new Random();
-                int indiceLado = random.Next(lados.Length);
+
                 Console.WriteLine("0. CENTRO \n 1. ESQUERDA \n 2. DIREITA");
 
                 int lado = int.Parse(Console.ReadLine());
 
-                if (lado > 3 || lado < 0) return false;
-        
-                string ladoDoGoleiro = lados[indiceLado];
-                if (ladoDoGoleiro != lados[lado]) return true;
-                return false;
 
-            } catch (FormatException)
+                cobrador.ladocobrado().setLado(lados[lado]);
+
+            }
+            catch (FormatException)
             {
-  
-                return false;
+                cobrador.ladocobrado().setLado(lados[2]);
             }
         }
     }
 }
-

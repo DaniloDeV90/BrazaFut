@@ -3,6 +3,8 @@ using Jogobrazino.src.Controllers.Carta;
 using Jogobrazino.src.Controllers.CartaoAmarelo;
 using Jogobrazino.src.Controllers.Energia;
 using Jogobrazino.src.Controllers.Gols;
+using Jogobrazino.src.Controllers.LadoCobrado;
+using Jogobrazino.src.Controllers.Penalti;
 using Jogobrazino.src.Controllers.Pontos;
 using System.Text;
 
@@ -16,14 +18,16 @@ namespace Jogobrazino.src.Controllers.Jogador
         private Ipontos pontos;
         private Igol gol;
         private IcartaoAmarelo cartaoAmarelo;
-    
-        public Jogadores(string nome, Ienergia energia1, Ipontos pontos, Igol gol, IcartaoAmarelo cartaoAmarelo)
+        private  IladoCobrado ladoCobrado;
+
+        public Jogadores(string nome, Ienergia energia1, Ipontos pontos, Igol gol, IcartaoAmarelo cartaoAmarelo, IladoCobrado ladoCobrado)
         {
             this.nome1 = nome.Trim ().Length > 0 ? nome : "maquina";
             this.energia1 = energia1;
             this.pontos = pontos;
             this.gol = gol;
-            this.cartaoAmarelo= cartaoAmarelo;
+            this.cartaoAmarelo = cartaoAmarelo;
+            this.ladoCobrado = ladoCobrado;
         }
 
         public string Getnome()
@@ -33,7 +37,10 @@ namespace Jogobrazino.src.Controllers.Jogador
 
         }
 
-       
+       public  IladoCobrado ladocobrado ()
+        {
+            return ladoCobrado;
+        }
         public Ienergia Energia()
         {
             return energia1;

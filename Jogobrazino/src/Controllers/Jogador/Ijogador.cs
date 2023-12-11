@@ -2,6 +2,7 @@
 using Jogobrazino.src.Controllers.CartaoAmarelo;
 using Jogobrazino.src.Controllers.Energia;
 using Jogobrazino.src.Controllers.Gols;
+using Jogobrazino.src.Controllers.LadoCobrado;
 using Jogobrazino.src.Controllers.Pontos;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,7 @@ namespace Jogobrazino.src.Controllers.Jogador
     
         public IcartaoAmarelo CartaoAmarelo();
         public Igol Gol();
-    
+        public IladoCobrado ladocobrado();
+
     }
 }
